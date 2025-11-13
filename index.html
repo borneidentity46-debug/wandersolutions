@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WanderWise Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+    html {scroll-behavior:smooth;}
+    body {
+      overflow-x:hidden;
+      color:#033E63;
+      background:linear-gradient(90deg,#e0f7fa,#b2ebf2,#e0f7fa);
+      background-size:400% 400%;
+      animation: gradient 20s ease infinite;
+      position:relative;
+      min-height:100vh;
+    }
+    @keyframes gradient {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+    header {
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1.2rem 2rem;background:rgba(255,255,255,0.9);
+      box-shadow:0 2px 10px rgba(0,0,0,0.05);
+      position:fixed;width:100%;top:0;z-index:1000;
+    }
+    .logo {font-size:1.5rem;font-weight:bold;color:#0077b6;}
+    .dropdown {position:relative;}
+    .dropbtn {
+      background:#0077b6;color:#fff;padding:0.7rem 1.2rem;
+      border:none;border-radius:5px;cursor:pointer;font-size:1rem;
+    }
+    .dropdown-content {
+      display:none;position:absolute;right:0;background:#fff;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      border-radius:8px;margin-top:0.5rem;overflow:hidden;
+    }
+    .dropdown-content a {
+      display:block;padding:0.8rem 1rem;color:#033E63;text-decoration:none;
+    }
+    .dropdown-content a:hover {background:#e0f7fa;}
+    .dropdown.show .dropdown-content {display:block;animation:fadeIn 0.3s;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+    main {padding-top:6rem;text-align:center;}
+    .start-btn {
+      margin-top:2rem;background:#0096c7;color:#fff;padding:1rem 2rem;
+      border:none;border-radius:50px;font-size:1.2rem;cursor:pointer;transition:background 0.3s;
+    }
+    .start-btn:hover {background:#0077b6;}
+    section {
+      padding:4rem 2rem;max-width:900px;margin:0 auto;
+      cursor:pointer;transition:transform 0.3s;
+    }
+    section:hover {transform:scale(1.02);}
+    footer {text-align:center;padding:2rem;background:rgba(255,255,255,0.9);margin-top:2rem;}
+    /* Modals */
+    .modal {
+      display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.5);justify-content:center;align-items:center;
+    }
+    .modal-content {
+      background:#fff;border-radius:10px;padding:2rem;width:90%;max-width:500px;
+      text-align:left;animation:zoomIn 0.4s ease;
+    }
+    @keyframes zoomIn {from{transform:scale(0.8);opacity:0;}to{transform:scale(1);opacity:1;}}
+    .close {float:right;font-size:1.5rem;cursor:pointer;color:#0077b6;}
+    .modal-content h2 {text-align:center;margin-bottom:1rem;color:#0077b6;}
+    label {display:block;margin-top:0.8rem;}
+    input, textarea {
+      width:100%;padding:0.6rem;margin-top:0.3rem;border:1px solid #ccc;
+      border-radius:5px;resize:none;
+    }
+    .submit-btn {
+      background:#0077b6;color:#fff;border:none;padding:0.8rem 1.2rem;
+      margin-top:1rem;border-radius:5px;cursor:pointer;width:100%;
+    }
+    .thankyou {
+      text-align:center;color:#0077b6;font-weight:bold;padding:1rem;display:none;
+    }
+    /* Floating logo */
+    .floating-logo {
+      position:fixed;top:50%;left:50%;width:400px;height:auto;
+      opacity:0.08;transform:translate(-50%,-50%);z-index:-1;pointer-events:none;
+    }
+    /* Spinner */
+    #loader {position:fixed;width:100%;height:100%;display:flex;justify-content:center;align-items:center;background:#fff;z-index:3000;}
+    .spinner {
+      border:5px solid #e0f7fa;border-top:5px solid #0077b6;
+      border-radius:50%;width:50px;height:50px;animation:spin 1s linear infinite;
+    }
+    @keyframes spin {100%{transform:rotate(360deg);}}
+  </style>
+</head>
+<body>
+  <div id="loader"><div class="spinner"></div></div>
+  <img src="assets/118017.jpg" class="floating-logo" id="logoMotion" alt="WanderWise Logo">
+  <header>
+    <div class="logo">WanderWise Solutions</div>
+    <div class="dropdown">
+      <button class="dropbtn">Menu <i class="fas fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#admission"><i class="fas fa-graduation-cap"></i> Admission Support Portal</a>
+        <a href="#scholarship"><i class="fas fa-hand-holding-usd"></i> Scholarship Support Portal</a>
+        <a href="#visa"><i class="fas fa-file-alt"></i> Study Visa Documents Review</a>
+        <a href="#cv"><i class="fas fa-user-tie"></i> CV & Cover Letter Portal</a>
+        <a href="#sop"><i class="fas fa-pen-nib"></i> SOP & Motivation Letter Portal</a>
+        <a href="#recommendation"><i class="fas fa-comments"></i> Recommendation Letter Portal</a>
+        <a href="#testimonials"><i class="fas fa-globe-africa"></i> Testimonials</a>
+        <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <button class="start-btn">Start Now</button>
+    <section id="admission" data-service="Admission Support Portal"><h2>Admission Support Portal</h2><p>Expert counseling and document guidance for global university applications.</p></section>
+    <section id="scholarship" data-service="Scholarship Support Portal"><h2>Scholarship Support Portal</h2><p>Personalized scholarship search and application assistance.</p></section>
+    <section id="visa" data-service="Study Visa Documents Review"><h2>Study Visa Documents Review</h2><p>Ensure your visa documents are accurate and complete (no visa filing).</p></section>
+    <section id="cv" data-service="CV & Cover Letter Portal"><h2>CV & Cover Letter Portal</h2><p>Get tailored CVs and cover letters for international jobs and academics.</p></section>
+    <section id="sop" data-service="SOP & Motivation Letter Portal"><h2>SOP & Motivation Letter Portal</h2><p>Craft impactful SOPs and motivation letters that stand out globally.</p></section>
+    <section id="recommendation" data-service="Recommendation Letter Portal"><h2>Recommendation Letter Portal</h2><p>Strong, personalized recommendation letters that highlight your achievements.</p></section>
+    <section id="testimonials"><h2>Testimonials</h2><p>“WanderWise helped me secure a full scholarship to study in Canada.” — Ama, Ghana</p><p>“Their CV and SOP review gave me confidence to apply abroad.” — Kwesi, Ghana</p></section>
+    <section id="contact"><h2>Contact</h2><p>Email: info@wanderwisesolutions.com</p><p>Phone: +17575539202</p></section>
+  </main>
+
+  <footer>© 2025 WanderWise Solutions. All Rights Reserved.</footer>
+
+  <!-- Service Form Modal -->
+  <div id="serviceModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle">Service Request</h2>
+      <form id="serviceForm">
+        <label>Full Name</label>
+        <input type="text" required>
+        <label>Email</label>
+        <input type="email" required>
+        <label>Country</label>
+        <input type="text" required>
+        <label>Service Type</label>
+        <input type="text" id="serviceType" readonly>
+        <label>Message / Request</label>
+        <textarea rows="4" required></textarea>
+        <button class="submit-btn" type="submit">Submit Request</button>
+      </form>
+      <div class="thankyou" id="thankYou">Thank you! Your request has been received.</div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').style.display='none';},800);});
+    const dropdown=document.querySelector('.dropdown');
+    dropdown.querySelector('.dropbtn').addEventListener('click',()=>dropdown.classList.toggle('show'));
+    gsap.to('#logoMotion',{rotation:360,scale:1.1,duration:50,repeat:-1,yoyo:true,ease:'linear'});
+    gsap.to('#logoMotion',{x:'+=100',y:'+=50',duration:40,repeat:-1,yoyo:true,ease:'sine.inOut'});
+    ScrollReveal().reveal('section',{delay:200,distance:'40px',duration:800,origin:'bottom',easing:'ease-in-out',reset:false});
+
+    const modal=document.getElementById('serviceModal');
+    const closeBtn=modal.querySelector('.close');
+    const form=document.getElementById('serviceForm');
+    const thankYou=document.getElementById('thankYou');
+    const serviceType=document.getElementById('serviceType');
+    document.querySelectorAll('section[data-service]').forEach(section=>{
+      section.addEventListener('click',()=>{
+        modal.style.display='flex';
+        serviceType.value=section.dataset.service;
+        document.getElementById('modalTitle').innerText=section.dataset.service;
+        form.style.display='block';
+        thankYou.style.display='none';
+      });
+    });
+    closeBtn.onclick=()=>modal.style.display='none';
+    window.onclick=(e)=>{if(e.target==modal){modal.style.display='none';}};
+    document.addEventListener('keydown',(e)=>{if(e.key==='Escape')modal.style.display='none';});
+    form.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      form.style.display='none';
+      thankYou.style.display='block';
+      setTimeout(()=>{
+        thankYou.style.display='none';
+        form.reset();
+        modal.style.display='none';
+      },2500);
+    });
+  </script>
+</body>
+</html>
